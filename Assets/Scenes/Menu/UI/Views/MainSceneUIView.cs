@@ -7,6 +7,7 @@ public class MainSceneUIView : MonoBehaviour
     public MenuUIView MenuPart;
     public SelectBotUIView SelectBotPart;
     public SettingsUIView SettingsPart;
+    public SelectMarkerUIView MarkerPart;
     public Blackout BlackoutService;
     public BackRotate Background;
 
@@ -16,5 +17,6 @@ public class MainSceneUIView : MonoBehaviour
         MenuPart.gameObject.SetActive(true);
         SelectBotPart.gameObject.SetActive(true);
         SettingsPart.gameObject.SetActive(true);
+        MarkerPart.gameObject.SetActive(true);
     }
 }

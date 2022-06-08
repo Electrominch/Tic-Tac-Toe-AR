@@ -41,7 +41,6 @@ public class Blackout : MonoBehaviour
             yield return null;
             count++;
         }
-        Debug.Log(count + " " + Time.deltaTime);
         _image.raycastTarget = false;
         Started = false;
     }

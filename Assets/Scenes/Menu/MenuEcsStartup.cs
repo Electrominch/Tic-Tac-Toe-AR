@@ -10,7 +10,6 @@ namespace Menu {
         private EcsWorld _world;
         private EcsSystems _systems;
         [SerializeField] private MainSceneUIView _uiView;
-        [SerializeField] private EcsUiEmitter _menuEmitter;
 
         void Start () {
             Application.targetFrameRate = 60;
@@ -42,7 +41,6 @@ namespace Menu {
                 .Add(new BeginUINavigateSystem())
                 .Add(new EndUINavigateSystem())
                 .Inject(_uiView)
-                .InjectUi(_menuEmitter)
                 .Init ();
             _world.SendMessage(new BeginUINavigateComponent("MainMenu",0.5f));
             _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });

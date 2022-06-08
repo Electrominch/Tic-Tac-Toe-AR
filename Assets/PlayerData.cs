@@ -92,6 +92,34 @@ public static class PlayerData
         Load();
     }
 
+    public static void NextDateFormat()
+    {
+        string[] formats = new string[] { "dd.MM.yyyy", "yyyy-MM-dd","yyyy/MM/dd",  @"yyyy.MM.dd", "MM-dd-yyyy", "MM/dd/yyyy", @"MM.dd.yyyy", @"dd-MM-yyyy", "dd/MM/yyyy" };
+        int i = 0;
+        for (; i < formats.Length; i++)
+            if (formats[i] == Settings.DateFormat)
+                break;
+        i++;
+        if (i >= formats.Length)
+            i = 0;
+        _settings.DateFormat = formats[i];
+        Save();
+    }
+    
+    public static void NextTimeFormat()
+    {
+        string[] formats = new string[] { "HH:mm", "HH.mm" };
+        int i = 0;
+        for (; i < formats.Length; i++)
+            if (formats[i] == Settings.TimeFormat)
+                break;
+        i++;
+        if (i >= formats.Length)
+            i = 0;
+        _settings.TimeFormat = formats[i];
+        Save();
+    }
+
     private static void SetDefaults()
     {
         _easyBot = new Stat();

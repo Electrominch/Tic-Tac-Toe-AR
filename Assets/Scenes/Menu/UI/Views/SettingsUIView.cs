@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,16 @@ public class SettingsUIView : MonoBehaviour
             PlayerData.Reset();
             UpdateUI();
         });
+        DateFormat.onClick.AddListener(() =>
+        {
+            PlayerData.NextDateFormat();
+            UpdateUI();
+        });
+        TimeFormat.onClick.AddListener(() =>
+        {
+            PlayerData.NextTimeFormat();
+            UpdateUI();
+        });
     }
 
     private void UpdateUI()
@@ -45,7 +56,8 @@ public class SettingsUIView : MonoBehaviour
         var sets = PlayerData.Settings;
         Music.image.color = sets.Music ? Color.green : Color.red;
         Sound.image.color = sets.Sound ? Color.green : Color.red;
-        DateFormat.GetComponentInChildren<TextMeshProUGUI>().text = sets.DateFormat;
-        TimeFormat.GetComponentInChildren<TextMeshProUGUI>().text = sets.TimeFormat;
+        DateTime dt = new DateTime(2022,12,31,23,59,0);
+        DateFormat.GetComponentInChildren<TextMeshProUGUI>().text = dt.ToString(sets.DateFormat, CultureInfo.InvariantCulture);
+        TimeFormat.GetComponentInChildren<TextMeshProUGUI>().text = dt.ToString(sets.TimeFormat, CultureInfo.InvariantCulture);
     }
 }
