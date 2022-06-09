@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainSceneUIView : MonoBehaviour
+public class MainSceneUIView : MonoBehaviour, ISceneUIView
 {
     public MenuUIView MenuPart;
     public SelectBotUIView SelectBotPart;
@@ -10,6 +10,8 @@ public class MainSceneUIView : MonoBehaviour
     public SelectMarkerUIView MarkerPart;
     public Blackout BlackoutService;
     public BackRotate Background;
+
+    public Blackout GetBlackout() => BlackoutService;
 
     private void Start()
     {

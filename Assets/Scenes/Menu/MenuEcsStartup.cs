@@ -1,4 +1,5 @@
 using Leopotam.Ecs;
+using Leopotam.Ecs.Common.SceneNavigate;
 using Leopotam.Ecs.Game.Systems;
 using Leopotam.Ecs.Ui.Components;
 using Leopotam.Ecs.Ui.Systems;
@@ -37,7 +38,7 @@ namespace Menu {
                 // .Inject (new CameraService ())
                 // .Inject (new NavMeshSupport ())
                 
-                .Add(new UISystem())
+                .Add(new MenuUIInitSystem())
                 .Add(new MenuInstallSystem())
                 .Add(new UpdateMarkersSystem())
                 .Add(new ChangeBotSystem())
@@ -45,6 +46,7 @@ namespace Menu {
                 .Add(new EndUINavigateSystem())
                 .Add(new ChangePlayModeSystem())
                 .Add(new StartGameSystem())
+                .Add(new SceneNavigateSystem())
                 .Inject(_uiView)
                 .Init ();
         }

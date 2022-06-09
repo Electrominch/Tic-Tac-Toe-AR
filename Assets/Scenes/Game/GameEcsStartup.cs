@@ -1,10 +1,13 @@
 using Leopotam.Ecs;
+using Leopotam.Ecs.Common.SceneNavigate;
+using Leopotam.Ecs.Game.UI;
 using UnityEngine;
 
 namespace Client {
     sealed class GameEcsStartup : MonoBehaviour {
         EcsWorld _world;
         EcsSystems _systems;
+        [SerializeField] GameUIView _ui;
 
         void Start () {
             // void can be switched to IEnumerator for support coroutines.
@@ -19,14 +22,17 @@ namespace Client {
                 // register your systems here, for example:
                 // .Add (new TestSystem1 ())
                 // .Add (new TestSystem2 ())
-                
+
                 // register one-frame components (order is important), for example:
                 // .OneFrame<TestComponent1> ()
                 // .OneFrame<TestComponent2> ()
-                
+
                 // inject service instances here (order doesn't important), for example:
                 // .Inject (new CameraService ())
                 // .Inject (new NavMeshSupport ())
+                .Add(new GameUIInitSystem())
+                .Add(new SceneNavigateSystem())
+                .Inject(_ui)
                 .Init ();
         }
 

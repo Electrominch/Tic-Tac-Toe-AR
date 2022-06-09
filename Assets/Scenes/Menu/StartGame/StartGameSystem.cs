@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Leopotam.Ecs.Common.SceneNavigate;
 using Leopotam.Ecs.Game.Components;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace Leopotam.Ecs.Game.Systems
 {
     internal class StartGameSystem : IEcsRunSystem
     {
+        EcsWorld _world = null;
         EcsFilter<StartGameComponent> _start = null;
         EcsFilter<GameConf> _conf = null;
-        MainSceneUIView _ui;
 
         public void Run()
         {
@@ -27,10 +28,7 @@ namespace Leopotam.Ecs.Game.Systems
             Bridge.PlayMode = confEnt.Get<PlayModeComponent>().Mode;
             Bridge.BotDifficulty = confEnt.Get<CurrentBotComponent>().BotDif;
             Bridge.Marker = startInfo.Marker;
-            _ui.BlackoutService.Black(()=>
-            {
-                SceneManager.LoadScene("Game");
-            });
+            _world.SendMessage(new NavigateToSceneComponent("Game"));
         }
     }
 }
