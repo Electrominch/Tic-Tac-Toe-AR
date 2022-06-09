@@ -13,4 +13,5 @@ public class SelectBotUIView : MonoBehaviour
     public Button NormalBot;
     public Button HardBot;
     public Button Tournament;
+    public Button PlayWithBot;
 }

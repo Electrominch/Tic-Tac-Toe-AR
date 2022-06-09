@@ -1,3 +1,4 @@
+using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Ui.Components;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,6 @@ public class MarkerButton : MonoBehaviour
 
     public void PlayThis()
     {
-        WorldHandler.GetWorld();
+        WorldHandler.GetWorld().SendMessage(new StartGameComponent(MarkersVault.LoadMarker(MarkerName)));
     }
 }

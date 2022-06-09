@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Leopotam.Ecs.Game.Components
 {
-    internal struct GameConf
+    internal struct PlayModeComponent
     {
+        public PlayMode Mode;
+    }
+
+    public enum PlayMode
+    {
+        Bot,
+        TwoPlayers,
     }
 }

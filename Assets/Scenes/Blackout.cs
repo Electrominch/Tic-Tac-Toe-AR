@@ -12,15 +12,14 @@ public class Blackout : MonoBehaviour
     [SerializeField] private float _delayOnBlack =0.1f;
 
     public bool Started { get; private set;  } = false;
-    public void StartBlackout(Action callbackOnBlack, float delayOnBlack = -1)
+    public void StartBlackoutCycle(Action callbackOnBlack, float delayOnBlack = -1)
     {
         if(Started == false)
-            StartCoroutine(DoBlackout(callbackOnBlack, delayOnBlack));
+            StartCoroutine(DoBlackoutCycle(callbackOnBlack, delayOnBlack));
     }
 
-    private IEnumerator DoBlackout(Action callbackOnBlack, float delayOnBlack = -1)
+    private IEnumerator DoBlackoutCycle(Action callbackOnBlack, float delayOnBlack = -1)
     {
-        int count = 0;
         Started = true;
         _image.raycastTarget = true;
         if (delayOnBlack < 0)
@@ -29,7 +28,6 @@ public class Blackout : MonoBehaviour
         {
             _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a + Time.deltaTime * _speed);
             yield return null;
-            count++;
         }
         yield return null;
         callbackOnBlack();
@@ -39,11 +37,32 @@ public class Blackout : MonoBehaviour
         {
             _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a - Time.deltaTime * _speed);
             yield return null;
-            count++;
         }
         _image.raycastTarget = false;
         Started = false;
     }
+
+    public void Black(Action callback)
+    {
+        if (Started == false)
+            StartCoroutine(DoBlack(callback));
+    }
+
+    private IEnumerator DoBlack(Action callback)
+    {
+        Started = true;
+        _image.raycastTarget = true;
+        while (_image.color.a < _maxA)
+        {
+            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a + Time.deltaTime * _speed);
+            yield return null;
+        }
+        yield return null;
+        callback();
+        _image.raycastTarget = false;
+        Started = false;
+    }
+
 
 
     // Update is called once per frame

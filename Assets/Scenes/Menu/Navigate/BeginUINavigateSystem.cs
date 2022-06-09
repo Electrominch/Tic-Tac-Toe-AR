@@ -25,7 +25,7 @@ namespace Leopotam.Ecs.Ui.Systems
             }
 
             var needUIPart = _change.Get1(0);
-            _ui.BlackoutService.StartBlackout(() => {
+            _ui.BlackoutService.StartBlackoutCycle(() => {
                 _world.SendMessage(new EndUINavigateComponent() { PartName = needUIPart.PartName });
                 _ui.Background.Restart();
             }, needUIPart.Delay);

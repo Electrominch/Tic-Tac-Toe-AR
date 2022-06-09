@@ -27,6 +27,14 @@ public static class MarkersVault
         Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Markers"));
     }
 
+    public static Texture2D LoadMarker(string name)
+    {
+        var fi = new FileInfo(Path.Combine(MarkersDir, name));
+        Texture2D tex = new Texture2D(1, 1);
+        tex.LoadImage(File.ReadAllBytes(fi.FullName));
+        return tex;
+    }
+
     public static void AskNew()
     {
         NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>

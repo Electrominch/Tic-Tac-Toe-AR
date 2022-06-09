@@ -6,5 +6,4 @@ using UnityEngine.UI;
 public class SelectMarkerUIView : MonoBehaviour
 {
     public Button BackToMenu;
-    public Button AddMarker;
 }

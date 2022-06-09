@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Ui.Components;
 using Leopotam.Ecs.Ui.Systems;
 using System.Collections;
@@ -12,8 +13,17 @@ public class MenuInstallSystem : IEcsInitSystem
 
     public void Init()
     {
+        SetGameConf();
         _world.SendMessage(new BeginUINavigateComponent("MainMenu", 0.5f));
-        _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
         _world.SendMessage(new UpdateMarkersEventComponent());
+    }
+
+    private void SetGameConf()
+    {
+        var ent = _world.NewEntity();
+        ent.Get<GameConf>();
+        ent.Get<CurrentBotComponent>();
+        ent.Get<PlayModeComponent>();
+        _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
     }
 }
