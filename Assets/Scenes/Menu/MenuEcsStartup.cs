@@ -37,13 +37,13 @@ namespace Menu {
                 // .Inject (new NavMeshSupport ())
                 
                 .Add(new UISystem())
+                .Add(new MenuInstallSystem())
+                .Add(new UpdateMarkersSystem())
                 .Add(new ChangeBotSystem())
                 .Add(new BeginUINavigateSystem())
                 .Add(new EndUINavigateSystem())
                 .Inject(_uiView)
                 .Init ();
-            _world.SendMessage(new BeginUINavigateComponent("MainMenu",0.5f));
-            _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
         }
 
         void Update () {
