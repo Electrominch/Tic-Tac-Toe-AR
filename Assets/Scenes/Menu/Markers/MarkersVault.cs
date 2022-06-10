@@ -33,10 +33,7 @@ public static class MarkersVault
 
     public static Texture2D LoadMarker(string name)
     {
-        var fi = new FileInfo(Path.Combine(MarkersDir, name));
-        Texture2D tex = new Texture2D(1, 1);
-        tex.LoadImage(File.ReadAllBytes(fi.FullName));
-        return tex;
+        return Markers[name].texture;
     }
 
     public static void AskNew()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Leopotam.Ecs.Common.SceneNavigate
@@ -20,9 +21,7 @@ namespace Leopotam.Ecs.Common.SceneNavigate
             string sceneName = _nav.Get1(0).SceneName;
             foreach (var i in _nav)
                 _nav.GetEntity(i).Del<NavigateToSceneComponent>();
-            var a = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-            a.allowSceneActivation = false;
-            _ui.GetBlackout().Black(() => a.allowSceneActivation = true);
+            _ui.GetBlackout().Black(() => SceneManager.LoadScene(sceneName));
         }
     }
 }
