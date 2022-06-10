@@ -1,13 +1,20 @@
+using Assets.Scenes.Game.GameCycle;
+using Assets.Scenes.Game.GameCycle.Cell;
+using Assets.Scenes.Game.GameCycle.StartGame;
+using Assets.Scenes.Game.Systems;
 using Leopotam.Ecs;
 using Leopotam.Ecs.Common.SceneNavigate;
+using Leopotam.Ecs.Game.Systems;
 using Leopotam.Ecs.Game.UI;
 using UnityEngine;
+using Voody.UniLeo;
 
 namespace Client {
     sealed class GameEcsStartup : MonoBehaviour {
         EcsWorld _world;
         EcsSystems _systems;
         [SerializeField] GameUIView _ui;
+        [SerializeField] CellBehaivor _cellPrefab;
 
         void Start () {
             // void can be switched to IEnumerator for support coroutines.
@@ -18,21 +25,18 @@ namespace Client {
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
+            WorldHandler.Init (_world);
             _systems
-                // register your systems here, for example:
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
-
-                // register one-frame components (order is important), for example:
-                // .OneFrame<TestComponent1> ()
-                // .OneFrame<TestComponent2> ()
-
-                // inject service instances here (order doesn't important), for example:
-                // .Inject (new CameraService ())
-                // .Inject (new NavMeshSupport ())
+                .ConvertScene()
+                .Add(new GameInitSystem())
                 .Add(new GameUIInitSystem())
+                .Add(new StartGameCycleSystem())
+                .Add(new GameCycleSystem())
+                .Add(new UpdateCellsSystem())
+                .Add(new CellSetupSystem())
                 .Add(new SceneNavigateSystem())
                 .Inject(_ui)
+                .Inject(_cellPrefab)
                 .Init ();
         }
 

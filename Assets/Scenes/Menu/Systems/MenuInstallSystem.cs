@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class MenuInstallSystem : IEcsInitSystem
 {
-    EcsWorld _world;
+    EcsWorld _world = null;
 
     public void Init()
     {

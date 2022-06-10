@@ -9,11 +9,23 @@ public class ARInstall : MonoBehaviour
 {
     [SerializeField] private ARTrackedImageManager m_TrackedImageManager;
     [SerializeField] private Image _target;
+    [SerializeField] private Camera _ARCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         AddImage(Bridge.Marker);
+        m_TrackedImageManager.trackedImagesChanged += args =>
+        {
+            foreach (var a in args.added)
+            {
+                a.gameObject.GetComponentInChildren<Canvas>().worldCamera = _ARCamera;
+            }
+            foreach(var a in args.removed)
+            {
+                Debug.Log("Removed");
+            }
+        };
     }
 
     void AddImage(Texture2D imageToAdd)

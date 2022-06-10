@@ -11,8 +11,8 @@ namespace Leopotam.Ecs.Game.UI
 {
     internal class GameUIInitSystem : IEcsInitSystem
     {
-        EcsWorld _world;
-        GameUIView _ui;
+        EcsWorld _world = null;
+        GameUIView _ui = null;
 
         public void Init()
         {

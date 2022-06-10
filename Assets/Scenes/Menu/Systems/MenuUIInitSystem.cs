@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class MenuUIInitSystem : IEcsInitSystem
 {
-    EcsWorld _world;
-    MainSceneUIView _ui;
+    EcsWorld _world = null;
+    MainSceneUIView _ui = null;
 
     public void Init()
     {

@@ -11,9 +11,9 @@ namespace Leopotam.Ecs.Ui.Systems
 {
     internal class BeginUINavigateSystem : IEcsRunSystem
     {
-        EcsWorld _world;
+        EcsWorld _world = null;
         EcsFilter<BeginUINavigateComponent> _change = null;
-        MainSceneUIView _ui;
+        MainSceneUIView _ui = null;
 
         public void Run()
         {
