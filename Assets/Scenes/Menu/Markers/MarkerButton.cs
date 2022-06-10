@@ -19,7 +19,6 @@ public class MarkerButton : MonoBehaviour
     public void DeleteThis()
     {
         MarkersVault.Remove(MarkerName);
-        WorldHandler.GetWorld().SendMessage(new UpdateMarkersEventComponent());
         Destroy(gameObject);
     }
 

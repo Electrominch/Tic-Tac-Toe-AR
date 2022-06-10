@@ -20,7 +20,9 @@ namespace Leopotam.Ecs.Common.SceneNavigate
             string sceneName = _nav.Get1(0).SceneName;
             foreach (var i in _nav)
                 _nav.GetEntity(i).Del<NavigateToSceneComponent>();
-            _ui.GetBlackout().Black(()=>SceneManager.LoadScene(sceneName));
+            var a = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            a.allowSceneActivation = false;
+            _ui.GetBlackout().Black(() => a.allowSceneActivation = true);
         }
     }
 }

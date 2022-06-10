@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using UnityEngine;
 
 internal static class Extencions
 {
@@ -49,4 +50,6 @@ internal static class Extencions
 
         return result;
     }
+
+    public static Sprite ToSprite(this Texture2D tex) => Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
 }

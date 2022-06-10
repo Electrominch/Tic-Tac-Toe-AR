@@ -14,7 +14,7 @@ public class MenuInstallSystem : IEcsInitSystem
     public void Init()
     {
         SetGameConf();
-        _world.SendMessage(new BeginUINavigateComponent("MainMenu", 0.5f));
+        _world.SendMessage(new BeginUINavigateComponent("MainMenu"));
         _world.SendMessage(new UpdateMarkersEventComponent());
     }
 

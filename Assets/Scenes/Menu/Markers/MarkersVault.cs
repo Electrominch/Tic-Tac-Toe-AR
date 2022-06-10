@@ -9,6 +9,7 @@ public static class MarkersVault
 {
     private static readonly string SaveDir = Application.persistentDataPath;
     private static readonly string MarkersDir = Path.Combine(SaveDir, "Markers");
+    private static readonly Dictionary<string, Sprite> Markers = new Dictionary<string, Sprite>();
     private static string PathForSave 
     {  
         get
@@ -22,9 +23,12 @@ public static class MarkersVault
         }
     }
 
+    public static Dictionary<string, Sprite> GetAll { get => new Dictionary<string, Sprite>(Markers); }
+
     static MarkersVault()
     {
         Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Markers"));
+        Markers = LoadMarkers();
     }
 
     public static Texture2D LoadMarker(string name)
@@ -47,6 +51,7 @@ public static class MarkersVault
                 Debug.Log(res?"Loaded":"Failed");
                 if (!res)
                     return;
+                Markers.Add(Path.GetFileName(PathForSave), tex.ToSprite());
                 File.WriteAllBytes(PathForSave, tex.EncodeToPNG());
                 WorldHandler.GetWorld().SendMessage(new UpdateMarkersEventComponent());
             }
@@ -55,7 +60,7 @@ public static class MarkersVault
         Debug.Log("Permission result: " + permission);
     }
 
-    public static Dictionary<string, Sprite> LoadMarkers()
+    private static Dictionary<string, Sprite> LoadMarkers()
     {
         Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
         DirectoryInfo di = new DirectoryInfo(MarkersDir);
@@ -74,9 +79,11 @@ public static class MarkersVault
 
     public static bool Remove(string name)
     {
-        if(File.Exists(Path.Combine(MarkersDir, name)))
+        if(Markers.ContainsKey(name))
         {
+            Markers.Remove(name);
             File.Delete(Path.Combine(MarkersDir, name));
+            WorldHandler.GetWorld().SendMessage(new UpdateMarkersEventComponent());
             return true;
         }
         return false;

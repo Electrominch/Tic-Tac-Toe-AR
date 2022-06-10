@@ -22,7 +22,7 @@ public class MarkersDisplay : MonoBehaviour
 
     private void DisplayAll()
     {
-        var markers = MarkersVault.LoadMarkers();
+        var markers = MarkersVault.GetAll;
         foreach (var kp in markers)
             DisplayButton(kp.Key, kp.Value);
     }

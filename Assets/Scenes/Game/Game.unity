@@ -1596,7 +1596,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 225784224}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2028,7 +2028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: ba68783708667e540bea9c85d25a6de2, type: 2}
   m_MaxNumberOfMovingImages: 1
-  m_TrackedImagePrefab: {fileID: 4578317797042806804, guid: 14ee577cceea67a44ad2b91b388005b7, type: 3}
+  m_TrackedImagePrefab: {fileID: 4709539028276847049, guid: d09db644fba2fb74b881c3659e609fdb, type: 3}
 --- !u!114 &2143580234
 MonoBehaviour:
   m_ObjectHideFlags: 0
