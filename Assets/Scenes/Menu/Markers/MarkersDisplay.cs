@@ -8,7 +8,6 @@ public class MarkersDisplay : MonoBehaviour
 
     public void Display()
     {
-        Debug.Log("Display...");
         DeleteOld();
         DisplayAll();
     }
