@@ -1,4 +1,3 @@
-using Leopotam.Ecs;
 using Leopotam.Ecs.Common.SceneNavigate;
 using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Game.Systems;
@@ -6,7 +5,8 @@ using Leopotam.Ecs.Game.UI;
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Leopotam.Ecs.Game {
+namespace Leopotam.Ecs.Game
+{
     sealed class GameEcsStartup : MonoBehaviour {
         EcsWorld _world;
         EcsSystems _systems;

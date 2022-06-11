@@ -1,11 +1,4 @@
-﻿using Leopotam.Ecs;
-using Leopotam.Ecs.Game.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using Leopotam.Ecs.Game.Components;
 
 namespace Leopotam.Ecs.Game.Systems
 {

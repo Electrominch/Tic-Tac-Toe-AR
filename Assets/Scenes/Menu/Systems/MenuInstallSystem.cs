@@ -1,10 +1,6 @@
-﻿using Leopotam.Ecs;
-using Leopotam.Ecs.Game.Components;
+﻿using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Menu.Components;
 using Leopotam.Ecs.Menu.UI.Components;
-using Leopotam.Ecs.Menu.UI.Systems;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Leopotam.Ecs.Menu.Systems
 {

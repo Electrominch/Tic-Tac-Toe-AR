@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-internal interface ISceneUIView
+﻿internal interface ISceneUIView
 {
     public abstract Blackout GetBlackout();
 }

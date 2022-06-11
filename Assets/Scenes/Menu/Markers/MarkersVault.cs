@@ -1,5 +1,4 @@
 using Leopotam.Ecs.Menu.UI.Components;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;

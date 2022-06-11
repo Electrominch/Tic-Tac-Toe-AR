@@ -1,5 +1,4 @@
-﻿using Leopotam.Ecs.Game;
-using Leopotam.Ecs.Game.Components;
+﻿using Leopotam.Ecs.Game.Components;
 using UnityEngine;
 
 internal static class Bridge

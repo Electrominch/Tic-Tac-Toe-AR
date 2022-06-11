@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Voody.UniLeo;
+﻿using Voody.UniLeo;
 
 namespace Leopotam.Ecs.Menu.UI.Components
 {

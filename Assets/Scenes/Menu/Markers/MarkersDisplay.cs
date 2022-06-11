@@ -1,6 +1,4 @@
 using Leopotam.Ecs.Menu.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MarkersDisplay : MonoBehaviour

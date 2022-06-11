@@ -1,8 +1,4 @@
-using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Menu.Components;
-using Leopotam.Ecs.Menu.UI.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Voody.UniLeo;
