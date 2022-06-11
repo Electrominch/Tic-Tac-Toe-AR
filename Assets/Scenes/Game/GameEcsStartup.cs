@@ -1,4 +1,5 @@
 using Assets.Scenes.Game.GameCycle;
+using Assets.Scenes.Game.GameCycle.Bot;
 using Assets.Scenes.Game.GameCycle.Cell;
 using Assets.Scenes.Game.GameCycle.StartGame;
 using Assets.Scenes.Game.GameCycle.User;
@@ -35,6 +36,7 @@ namespace Client {
 
                 .Add(new CellSetupSystem())
                 .Add(new UserGameMoveSystem())
+                .Add(new BotGameMoveSystem())
                 .Add(new StartGameCycleSystem())
                 .Add(new GameCycleSystem())
                 .Add(new UpdateCellsContentSystem())
