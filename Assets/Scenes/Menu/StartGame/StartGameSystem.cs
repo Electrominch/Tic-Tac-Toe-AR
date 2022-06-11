@@ -24,9 +24,9 @@ namespace Leopotam.Ecs.Game.Systems
             var startInfo = _start.Get1(0);
             foreach (var i in _start)//Удаление всех событий для старта
                 _start.GetEntity(i).Del<StartGameComponent>();
-            var confEnt = _conf.GetEntity(0);
-            Bridge.PlayMode = confEnt.Get<PlayModeComponent>().Mode;
-            Bridge.BotDifficulty = confEnt.Get<BotComponent>().BotDif;
+            var conf = _conf.Get1(0);
+            Bridge.PlayMode = conf.PlayMode;
+            Bridge.BotDifficulty = conf.Bot;
             Bridge.Marker = startInfo.Marker;
             _world.SendMessage(new NavigateToSceneComponent("Game"));
         }

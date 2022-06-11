@@ -12,7 +12,7 @@ namespace Leopotam.Ecs.Ui.Systems
     internal class ChangeBotSystem : IEcsRunSystem
     {
         EcsFilter<ChangeBotComponent> _change = null;
-        EcsFilter<GameConfComponent, BotComponent> _bot = null;
+        EcsFilter<GameConfComponent> _conf = null;
         EcsFilter<BotStatisticsComponent> _botStatistics = null;
 
         public void Run()
@@ -21,8 +21,8 @@ namespace Leopotam.Ecs.Ui.Systems
             {
                 var changeEnt = _change.GetEntity(i);
                 var target = changeEnt.Get<ChangeBotComponent>().Target;
-                foreach (var b in _bot)
-                    _bot.Get2(b).BotDif = target;
+                foreach (var b in _conf)
+                    _conf.Get1(b).Bot = target;
                 foreach (var stat in _botStatistics)
                 {
                     ref var curStatView = ref _botStatistics.Get1(stat);
