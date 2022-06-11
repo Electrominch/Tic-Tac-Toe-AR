@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Leopotam.Ecs.Game.Components;
 
-namespace Leopotam.Ecs.Game.Components
+namespace Leopotam.Ecs.Menu.Components
 {
     internal struct GameConfComponent
     {
-        public PlayMode PlayMode;
+        public TicTacMode PlayMode;
         public Bot Bot;
     }
 }

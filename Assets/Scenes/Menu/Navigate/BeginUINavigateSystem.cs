@@ -1,5 +1,5 @@
 ﻿using Leopotam.Ecs;
-using Leopotam.Ecs.Ui.Components;
+using Leopotam.Ecs.Menu.UI.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Leopotam.Ecs.Ui.Systems
+namespace Leopotam.Ecs.Menu.UI.Systems
 {
     internal class BeginUINavigateSystem : IEcsRunSystem
     {

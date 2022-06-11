@@ -1,15 +1,7 @@
-﻿using Leopotam.Ecs;
-using Leopotam.Ecs.Common.SceneNavigate;
-using Leopotam.Ecs.Game.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using Leopotam.Ecs.Common.SceneNavigate;
+using Leopotam.Ecs.Menu.Components;
 
-namespace Leopotam.Ecs.Game.Systems
+namespace Leopotam.Ecs.Menu.Systems
 {
     internal class StartGameSystem : IEcsRunSystem
     {

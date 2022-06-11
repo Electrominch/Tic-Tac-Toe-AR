@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectBotUIView : MonoBehaviour
+namespace Leopotam.Ecs.Menu.UI
 {
-    public Button BackToMenu;
-    public Button EasyBot;
-    public Button NormalBot;
-    public Button HardBot;
-    public Button Tournament;
-    public Button PlayWithBot;
+    public class SelectBotUIView : MonoBehaviour
+    {
+        public Button BackToMenu;
+        public Button EasyBot;
+        public Button NormalBot;
+        public Button HardBot;
+        public Button Tournament;
+        public Button PlayWithBot;
+    }
 }

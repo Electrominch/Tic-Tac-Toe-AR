@@ -1,6 +1,3 @@
-using Assets.Scenes.Game.GameCycle;
-using Assets.Scenes.Game.GameCycle.PlayerInfo.User;
-using Assets.Scenes.Game.GameCycle.StartGame;
 using Leopotam.Ecs;
 using Leopotam.Ecs.Game.Components;
 using System.Collections;
@@ -16,7 +13,7 @@ namespace Leopotam.Ecs.Game.Systems
 
         public void Init()
         {
-            SetPlayers(Bridge.PlayMode == Components.PlayMode.Bot ? 1:2);
+            SetPlayers(Bridge.PlayMode == TicTacMode.Bot ? 1:2);
             _world.NewEntity().Get<FieldComponent>();
             _world.NewEntity().Get<GameInfoComponent>().CellCount = 9;
             _world.SendMessage(new StartGameCycleComponent());

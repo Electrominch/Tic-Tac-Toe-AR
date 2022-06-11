@@ -1,13 +1,15 @@
 using Leopotam.Ecs;
 using Leopotam.Ecs.Common.SceneNavigate;
 using Leopotam.Ecs.Game.Systems;
-using Leopotam.Ecs.Ui.Components;
-using Leopotam.Ecs.Ui.Systems;
+using Leopotam.Ecs.Menu.Systems;
+using Leopotam.Ecs.Menu.UI;
+using Leopotam.Ecs.Menu.UI.Components;
+using Leopotam.Ecs.Menu.UI.Systems;
 using UnityEngine;
 using UnityEngine.UI;
 using Voody.UniLeo;
 
-namespace Menu {
+namespace Leopotam.Ecs.Menu {
     sealed class MenuEcsStartup : MonoBehaviour {
         private EcsWorld _world;
         private EcsSystems _systems;

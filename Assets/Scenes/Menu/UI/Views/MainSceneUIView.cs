@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainSceneUIView : MonoBehaviour, ISceneUIView
+namespace Leopotam.Ecs.Menu.UI
 {
-    public MenuUIView MenuPart;
-    public SelectBotUIView SelectBotPart;
-    public SettingsUIView SettingsPart;
-    public SelectMarkerUIView MarkerPart;
-    public Blackout BlackoutService;
-    public BackRotate Background;
-
-    public Blackout GetBlackout() => BlackoutService;
-
-    private void Start()
+    public class MainSceneUIView : MonoBehaviour, ISceneUIView
     {
-        BlackoutService.gameObject.SetActive(true);
-        MenuPart.gameObject.SetActive(true);
-        SelectBotPart.gameObject.SetActive(true);
-        SettingsPart.gameObject.SetActive(true);
-        MarkerPart.gameObject.SetActive(true);
+        public MenuUIView MenuPart;
+        public SelectBotUIView SelectBotPart;
+        public SettingsUIView SettingsPart;
+        public SelectMarkerUIView MarkerPart;
+        public Blackout BlackoutService;
+        public BackRotate Background;
+
+        public Blackout GetBlackout() => BlackoutService;
+
+        private void Start()
+        {
+            BlackoutService.gameObject.SetActive(true);
+            MenuPart.gameObject.SetActive(true);
+            SelectBotPart.gameObject.SetActive(true);
+            SettingsPart.gameObject.SetActive(true);
+            MarkerPart.gameObject.SetActive(true);
+        }
     }
+
 }

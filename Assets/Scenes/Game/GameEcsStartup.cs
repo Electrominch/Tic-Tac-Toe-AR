@@ -1,17 +1,12 @@
-using Assets.Scenes.Game.GameCycle;
-using Assets.Scenes.Game.GameCycle.Bot;
-using Assets.Scenes.Game.GameCycle.Cell;
-using Assets.Scenes.Game.GameCycle.StartGame;
-using Assets.Scenes.Game.GameCycle.User;
-using Assets.Scenes.Game.Systems;
 using Leopotam.Ecs;
 using Leopotam.Ecs.Common.SceneNavigate;
+using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Game.Systems;
 using Leopotam.Ecs.Game.UI;
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Client {
+namespace Leopotam.Ecs.Game {
     sealed class GameEcsStartup : MonoBehaviour {
         EcsWorld _world;
         EcsSystems _systems;

@@ -1,13 +1,16 @@
-using Leopotam.Ecs.Ui.Components;
+using Leopotam.Ecs.Menu.UI.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Voody.UniLeo;
 
-public class AddMarkerButton : MonoBehaviour
+namespace Leopotam.Ecs.Menu.UI
 {
-    public void CreateMarker()
+    public class AddMarkerButton : MonoBehaviour
     {
-        MarkersVault.AskNew();
-	}
+        public void CreateMarker()
+        {
+            MarkersVault.AskNew();
+        }
+    }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leopotam.Ecs.Ui.Components
+namespace Leopotam.Ecs.Menu.UI.Components
 {
     internal struct BeginUINavigateComponent
     {

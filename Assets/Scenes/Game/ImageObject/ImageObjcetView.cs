@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageObjcetView : MonoBehaviour
+
+namespace Leopotam.Ecs.Game.UI
 {
-    public GridLayoutGroup LayoutGroup;
+    public class ImageObjcetView : MonoBehaviour
+    {
+        public GridLayoutGroup LayoutGroup;
+    }
 }

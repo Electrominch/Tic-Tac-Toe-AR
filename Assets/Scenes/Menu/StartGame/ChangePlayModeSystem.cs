@@ -1,13 +1,6 @@
-﻿using Leopotam.Ecs;
-using Leopotam.Ecs.Game.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using Leopotam.Ecs.Menu.Components;
 
-namespace Leopotam.Ecs.Game.Systems
+namespace Leopotam.Ecs.Menu.UI.Systems
 {
     internal class ChangePlayModeSystem : IEcsRunSystem
     {

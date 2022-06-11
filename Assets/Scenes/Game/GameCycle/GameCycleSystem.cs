@@ -1,12 +1,9 @@
-﻿using Assets.Scenes.Game.GameCycle.Cell;
-using Assets.Scenes.Game.GameCycle.StartGame;
-using Leopotam.Ecs;
-using Leopotam.Ecs.Game.Components;
+﻿using Leopotam.Ecs.Game.Components;
 using System;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scenes.Game.GameCycle
+namespace Leopotam.Ecs.Game.Systems
 {
     internal class GameCycleSystem : IEcsRunSystem
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Leopotam.Ecs.Ui.Components
+namespace Leopotam.Ecs.Menu.UI.Components
 {
     public sealed class MarkerDisplayProvider : MonoProvider<MarkerDisplayComponent> { }
 }

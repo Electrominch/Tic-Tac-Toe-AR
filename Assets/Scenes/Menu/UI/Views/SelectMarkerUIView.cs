@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectMarkerUIView : MonoBehaviour
+namespace Leopotam.Ecs.Menu.UI
 {
-    public Button BackToMenu;
+    public class SelectMarkerUIView : MonoBehaviour
+    {
+        public Button BackToMenu;
+    }
 }

@@ -1,6 +1,5 @@
+using Leopotam.Ecs.Game.UI;
 using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public struct ImageObjectComponent

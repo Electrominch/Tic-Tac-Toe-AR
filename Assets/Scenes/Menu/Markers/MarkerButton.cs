@@ -1,29 +1,34 @@
 using Leopotam.Ecs.Game.Components;
-using Leopotam.Ecs.Ui.Components;
+using Leopotam.Ecs.Menu.Components;
+using Leopotam.Ecs.Menu.UI.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Voody.UniLeo;
 
-public class MarkerButton : MonoBehaviour
+namespace Leopotam.Ecs.Menu.UI
 {
-    public string MarkerName { get; set; }
-    [SerializeField] private Image _imgView;
-
-    public void SetSprite(Sprite sprite)
+    public class MarkerButton : MonoBehaviour
     {
-        _imgView.sprite = sprite;
+        public string MarkerName { get; set; }
+        [SerializeField] private Image _imgView;
+
+        public void SetSprite(Sprite sprite)
+        {
+            _imgView.sprite = sprite;
+        }
+
+        public void DeleteThis()
+        {
+            MarkersVault.Remove(MarkerName);
+            Destroy(gameObject);
+        }
+
+        public void PlayThis()
+        {
+            WorldHandler.GetWorld().SendMessage(new StartGameComponent(MarkersVault.LoadMarker(MarkerName)));
+        }
     }
 
-    public void DeleteThis()
-    {
-        MarkersVault.Remove(MarkerName);
-        Destroy(gameObject);
-    }
-
-    public void PlayThis()
-    {
-        WorldHandler.GetWorld().SendMessage(new StartGameComponent(MarkersVault.LoadMarker(MarkerName)));
-    }
 }

@@ -3,4 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Voody.UniLeo;
 
-public class ImageObjectProvider : MonoProvider<ImageObjectComponent> { }
+
+namespace Leopotam.Ecs.Game.UI
+{
+    public class ImageObjectProvider : MonoProvider<ImageObjectComponent> { }
+}

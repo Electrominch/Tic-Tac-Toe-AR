@@ -62,12 +62,4 @@ public class Blackout : MonoBehaviour
         _image.raycastTarget = false;
         Started = false;
     }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

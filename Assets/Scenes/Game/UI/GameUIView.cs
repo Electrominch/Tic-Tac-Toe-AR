@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameUIView : MonoBehaviour, ISceneUIView
+namespace Leopotam.Ecs.Game.UI
 {
-    public Button BackToMenuButton;
-    public Blackout BlackoutService;
-    public Blackout GetBlackout() => BlackoutService;
-
-    private void Start()
+    public class GameUIView : MonoBehaviour, ISceneUIView
     {
-        BlackoutService.gameObject.SetActive(true);
-        BlackoutService.StartBlackoutCycle(() => { });
+        public Button BackToMenuButton;
+        public Blackout BlackoutService;
+        public Blackout GetBlackout() => BlackoutService;
+
+        private void Start()
+        {
+            BlackoutService.gameObject.SetActive(true);
+            BlackoutService.StartBlackoutCycle(() => { });
+        }
     }
+
 }

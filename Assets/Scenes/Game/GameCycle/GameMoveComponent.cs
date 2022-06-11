@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scenes.Game.GameCycle
+namespace Leopotam.Ecs.Game.Components
 {
     internal struct GameMoveComponent
     {

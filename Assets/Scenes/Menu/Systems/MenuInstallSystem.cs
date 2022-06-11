@@ -1,24 +1,29 @@
 ﻿using Leopotam.Ecs;
 using Leopotam.Ecs.Game.Components;
-using Leopotam.Ecs.Ui.Components;
-using Leopotam.Ecs.Ui.Systems;
+using Leopotam.Ecs.Menu.Components;
+using Leopotam.Ecs.Menu.UI.Components;
+using Leopotam.Ecs.Menu.UI.Systems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class MenuInstallSystem : IEcsInitSystem
+namespace Leopotam.Ecs.Menu.Systems
 {
-    EcsWorld _world = null;
-
-    public void Init()
+    public class MenuInstallSystem : IEcsInitSystem
     {
-        SetGameConf();
-        _world.SendMessage(new BeginUINavigateComponent("MainMenu"));
-        _world.SendMessage(new UpdateMarkersEventComponent());
+        EcsWorld _world = null;
+
+        public void Init()
+        {
+            SetGameConf();
+            _world.SendMessage(new BeginUINavigateComponent("MainMenu"));
+            _world.SendMessage(new UpdateMarkersEventComponent());
+        }
+
+        private void SetGameConf()
+        {
+            ref var conf = ref _world.NewEntity().Get<GameConfComponent>();
+            _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
+        }
     }
 
-    private void SetGameConf()
-    {
-        ref var conf = ref _world.NewEntity().Get<GameConfComponent>();
-        _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
-    }
 }

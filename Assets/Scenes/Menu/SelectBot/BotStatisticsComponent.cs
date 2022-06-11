@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Voody.UniLeo;
 
-namespace Leopotam.Ecs.Ui.Components
+namespace Leopotam.Ecs.Menu.UI.Components
 {
     [Serializable]
     public struct BotStatisticsComponent
