@@ -52,4 +52,9 @@ internal static class Extencions
     }
 
     public static Sprite ToSprite(this Texture2D tex) => Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
+
+    public static Color GetRandomColor()
+    {
+        return UnityEngine.Random.ColorHSV(0,1,0,1,0.5f,1);
+    }
 }

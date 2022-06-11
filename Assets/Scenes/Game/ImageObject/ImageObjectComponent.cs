@@ -6,4 +6,5 @@ using UnityEngine;
 public struct ImageObjectComponent
 {
     public ImageObjcetView View;
+    public CellBehaivor[][] Cells;
 }

@@ -1,4 +1,5 @@
 using Assets.Scenes.Game.GameCycle;
+using Assets.Scenes.Game.GameCycle.PlayerInfo.User;
 using Assets.Scenes.Game.GameCycle.StartGame;
 using Leopotam.Ecs;
 using Leopotam.Ecs.Game.Components;
@@ -15,17 +16,24 @@ namespace Leopotam.Ecs.Game.Systems
 
         public void Init()
         {
-            SetPlayers();
+            SetPlayers(Bridge.PlayMode == Components.PlayMode.Bot ? 1:2);
             _world.NewEntity().Get<FieldComponent>();
             _world.NewEntity().Get<GameInfoComponent>().CellCount = 9;
             _world.SendMessage(new StartGameCycleComponent());
         }
 
-        private void SetPlayers()
+        private void SetPlayers(int users)
         {
             int players = 2;
             while (players-- > 0)
-                _world.NewEntity().Get<GamePlayerComponent>() = new GamePlayerComponent(players);
+            {
+                var ent = _world.NewEntity();
+                ent.Get<GamePlayerComponent>() = new GamePlayerComponent(players);
+                if (users-- > 0)
+                    ent.Get<UserComponent>();
+                else
+                    ent.Get<BotComponent>().BotDif = Bridge.BotDifficulty;
+            }
         }
     }
 }

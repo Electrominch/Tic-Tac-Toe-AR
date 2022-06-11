@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scenes.Game.GameCycle.Cell
+namespace Assets.Scenes.Game.GameCycle.PlayerInfo.User
 {
-    internal struct UpdateCellsComponent
+    internal struct UserComponent
     {
     }
 }

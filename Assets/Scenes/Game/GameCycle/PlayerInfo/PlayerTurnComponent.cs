@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scenes.Game.GameCycle
 {
-    internal struct PlayerTurn
+    internal struct PlayerTurnComponent
     {
     }
 }

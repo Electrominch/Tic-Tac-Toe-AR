@@ -1,6 +1,7 @@
 using Assets.Scenes.Game.GameCycle;
 using Assets.Scenes.Game.GameCycle.Cell;
 using Assets.Scenes.Game.GameCycle.StartGame;
+using Assets.Scenes.Game.GameCycle.User;
 using Assets.Scenes.Game.Systems;
 using Leopotam.Ecs;
 using Leopotam.Ecs.Common.SceneNavigate;
@@ -30,11 +31,17 @@ namespace Client {
                 .ConvertScene()
                 .Add(new GameInitSystem())
                 .Add(new GameUIInitSystem())
+                .Add(new SceneNavigateSystem())
+
+                .Add(new CellSetupSystem())
+                .Add(new UserGameMoveSystem())
                 .Add(new StartGameCycleSystem())
                 .Add(new GameCycleSystem())
-                .Add(new UpdateCellsSystem())
-                .Add(new CellSetupSystem())
-                .Add(new SceneNavigateSystem())
+                .Add(new UpdateCellsContentSystem())
+                .Add(new UpdateCellsColorSystem())
+
+                .OneFrame<UpdateCellsContentComponent>()
+                .OneFrame<UpdateCellsColorComponent>()
                 .Inject(_ui)
                 .Inject(_cellPrefab)
                 .Init ();

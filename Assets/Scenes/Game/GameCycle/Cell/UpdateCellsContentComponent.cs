@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scenes.Game.GameCycle.Cell
 {
-    [Serializable]
-    public struct CellComponent
+    internal struct UpdateCellsContentComponent
     {
-        public CellBehaivor Cell;
     }
 }

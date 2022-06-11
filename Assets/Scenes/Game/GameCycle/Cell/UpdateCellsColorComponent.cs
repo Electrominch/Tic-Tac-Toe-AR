@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scenes.Game.GameCycle
+namespace Assets.Scenes.Game.GameCycle.Cell
 {
-    internal struct FieldComponent
+    internal struct UpdateCellsColorComponent
     {
-        public PlayerFigure[][] Field;
     }
 }

@@ -12,7 +12,7 @@ namespace Leopotam.Ecs.Ui.Systems
     internal class ChangeBotSystem : IEcsRunSystem
     {
         EcsFilter<ChangeBotComponent> _change = null;
-        EcsFilter<GameConf, CurrentBotComponent> _bot = null;
+        EcsFilter<GameConfComponent, BotComponent> _bot = null;
         EcsFilter<BotStatisticsComponent> _botStatistics = null;
 
         public void Run()

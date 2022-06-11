@@ -6,16 +6,7 @@ using System.Threading.Tasks;
 
 namespace Leopotam.Ecs.Game.Components
 {
-    internal struct CurrentBotComponent
+    internal struct GameConfComponent
     {
-        public Bot BotDif;
-    }
-
-    public enum Bot
-    {
-        Easy,
-        Normal,
-        Hard,
-        Tournament
     }
 }

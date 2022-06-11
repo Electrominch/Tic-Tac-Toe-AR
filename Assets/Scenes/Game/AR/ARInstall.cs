@@ -20,11 +20,20 @@ public class ARInstall : MonoBehaviour
             foreach (var a in args.added)
             {
                 a.gameObject.GetComponentInChildren<Canvas>().worldCamera = _ARCamera;
-                Debug.Log("Added");
             }
             foreach(var a in args.removed)
             {
-                Debug.Log("Removed");
+            }
+            foreach(var updated in args.updated)
+            {
+                if(updated.trackingState == TrackingState.None || updated.trackingState == TrackingState.Limited)
+                {
+                    updated.gameObject.SetActive(false);
+                }
+                else
+                {
+                    updated.gameObject.SetActive(true);
+                }
             }
         };
 

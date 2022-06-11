@@ -21,8 +21,8 @@ public class MenuInstallSystem : IEcsInitSystem
     private void SetGameConf()
     {
         var ent = _world.NewEntity();
-        ent.Get<GameConf>();
-        ent.Get<CurrentBotComponent>();
+        ent.Get<GameConfComponent>();
+        ent.Get<BotComponent>();
         ent.Get<PlayModeComponent>();
         _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
     }

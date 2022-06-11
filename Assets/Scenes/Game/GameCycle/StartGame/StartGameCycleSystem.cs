@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs;
+﻿using Assets.Scenes.Game.GameCycle.Cell;
+using Leopotam.Ecs;
 using Leopotam.Ecs.Game.Components;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Assets.Scenes.Game.GameCycle.StartGame
 {
     internal class StartGameCycleSystem : IEcsRunSystem
     {
+        EcsWorld _world = null;
         EcsFilter<StartGameCycleComponent> _start = null;
         EcsFilter<GamePlayerComponent> _players = null;
         EcsFilter<FieldComponent> _field = null;
@@ -20,12 +22,13 @@ namespace Assets.Scenes.Game.GameCycle.StartGame
         {
             if (_start.GetEntitiesCount() == 0)
                 return;
-            Debug.Log("Starting Cycle..");
             SetUpField();
             RandomTurn();
             RandomFigures();
             foreach (var i in _start)
                 _start.GetEntity(i).Del<StartGameCycleComponent>();
+            _world.SendMessage(new UpdateCellsContentComponent());
+            _world.SendMessage(new UpdateCellsColorComponent());
         }
 
         private void RandomFigures()//случайное распределение фигурок
@@ -38,16 +41,16 @@ namespace Assets.Scenes.Game.GameCycle.StartGame
         private void RandomTurn()//случайный игрок получает возможность ходить первым
         {
             int rndP = UnityEngine.Random.Range(0, _players.GetEntitiesCount());
-            _players.GetEntity(rndP).Get<PlayerTurn>();
+            _players.GetEntity(rndP).Get<PlayerTurnComponent>();
         }
 
         private void SetUpField()
         {
             ref var field = ref _field.Get1(0);
             var side = (int)MathF.Sqrt(_gi.Get1(0).CellCount);
-            field.Field = new int[side][];
+            field.Field = new PlayerFigure[side][];
             for (int i = 0; i < field.Field.Length; i++)
-                field.Field[i] = Enumerable.Repeat(0, side).ToArray();
+                field.Field[i] = Enumerable.Repeat(PlayerFigure.None, side).ToArray();
         }
     }
 }

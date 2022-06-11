@@ -12,7 +12,7 @@ namespace Leopotam.Ecs.Game.Systems
     internal class ChangePlayModeSystem : IEcsRunSystem
     {
         EcsFilter<ChangePlayModeComponent> _change = null;
-        EcsFilter<GameConf, PlayModeComponent> _conf = null;
+        EcsFilter<GameConfComponent, PlayModeComponent> _conf = null;
 
         public void Run()
         {

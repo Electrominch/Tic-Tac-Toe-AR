@@ -15,7 +15,7 @@ namespace Leopotam.Ecs.Game.Systems
     {
         EcsWorld _world = null;
         EcsFilter<StartGameComponent> _start = null;
-        EcsFilter<GameConf> _conf = null;
+        EcsFilter<GameConfComponent> _conf = null;
 
         public void Run()
         {
@@ -26,7 +26,7 @@ namespace Leopotam.Ecs.Game.Systems
                 _start.GetEntity(i).Del<StartGameComponent>();
             var confEnt = _conf.GetEntity(0);
             Bridge.PlayMode = confEnt.Get<PlayModeComponent>().Mode;
-            Bridge.BotDifficulty = confEnt.Get<CurrentBotComponent>().BotDif;
+            Bridge.BotDifficulty = confEnt.Get<BotComponent>().BotDif;
             Bridge.Marker = startInfo.Marker;
             _world.SendMessage(new NavigateToSceneComponent("Game"));
         }

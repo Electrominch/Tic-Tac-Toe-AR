@@ -7,7 +7,7 @@ public class EditorOrAR : MonoBehaviour
     [SerializeField] private GameObject _editor;
     [SerializeField] private GameObject _AR;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 #if UNITY_EDITOR
         _editor.SetActive(true);
