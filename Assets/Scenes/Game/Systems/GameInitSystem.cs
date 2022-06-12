@@ -9,23 +9,32 @@ namespace Leopotam.Ecs.Game.Systems
         public void Init()
         {
             SetPlayers(Bridge.PlayMode == TicTacMode.Bot ? 1:2);
+            //SetPlayers(0);
+            SetGameConf();
             _world.NewEntity().Get<FieldComponent>();
-            _world.NewEntity().Get<GameInfoComponent>().CellCount = 9;
             _world.SendMessage(new StartGameCycleComponent());
         }
 
         private void SetPlayers(int users)
         {
-            int players = 2;
-            while (players-- > 0)
+            for(int playerID = 0; playerID<2; playerID++)
             {
                 var ent = _world.NewEntity();
-                ent.Get<GamePlayerComponent>() = new GamePlayerComponent(players);
+                ent.Get<GamePlayerComponent>() = new GamePlayerComponent(playerID);
                 if (users-- > 0)
                     ent.Get<UserComponent>();
                 else
                     ent.Get<BotComponent>().BotDif = Bridge.BotDifficulty;
+
+                ent.Get<PlayerGameStatComponent>();
             }
+        }
+
+        private void SetGameConf()
+        {
+            var ent = _world.NewEntity();
+            ent.Get<GameConfComponent>().CellCount = 9;
+            ent.Get<GameConfComponent>().TacMode = Bridge.PlayMode;
         }
     }
 }

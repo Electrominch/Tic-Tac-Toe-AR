@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs.Game.Components;
+using Leopotam.Ecs.Game.UI.Components;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -29,13 +30,10 @@ namespace Leopotam.Ecs.Game.Systems
                 _moves.GetEntity(i).Del<GameMoveComponent>();
             }
             if (CheckEndOfGame(field, 3, out var res))
-            {
-                Debug.Log($"Res: {res}");
-                _world.SendMessage(new StartGameCycleComponent());
-            }
+                _world.SendMessage(new GameEndedComponent(curPlayer.Get<GamePlayerComponent>().PlayerID, res));
             else
                 NextPlayerTurn();
-            _world.SendMessage(new UpdateCellsContentComponent());
+            _world.SendMessage(new UpdateAllUIComponent());
         }
 
         private bool CheckEndOfGame(PlayerFigure[][] field, int lineForWin, out PlayerFigure winner)

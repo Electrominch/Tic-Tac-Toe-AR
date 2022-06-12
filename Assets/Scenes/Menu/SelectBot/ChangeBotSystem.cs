@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs.Menu.Components;
 using Leopotam.Ecs.Menu.UI.Components;
+using UnityEngine;
 
 namespace Leopotam.Ecs.Menu.UI.Systems
 {
@@ -11,6 +12,8 @@ namespace Leopotam.Ecs.Menu.UI.Systems
 
         public void Run()
         {
+            if (_botStatistics.GetEntitiesCount() == 0)
+                return;
             foreach(var i in _change)
             {
                 var changeEnt = _change.GetEntity(i);
@@ -25,7 +28,6 @@ namespace Leopotam.Ecs.Menu.UI.Systems
                     else
                         curStatView.StatView.Unselect();
                 }
-
                 changeEnt.Del<ChangeBotComponent>();
             }
         }

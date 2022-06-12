@@ -10,14 +10,14 @@ namespace Leopotam.Ecs.Menu.Systems
 
         public void Init()
         {
-            SetGameConf();
             _world.SendMessage(new BeginUINavigateComponent("MainMenu"));
             _world.SendMessage(new UpdateMarkersEventComponent());
+            SetGameConf();
         }
 
         private void SetGameConf()
         {
-            ref var conf = ref _world.NewEntity().Get<GameConfComponent>();
+            ref var conf = ref _world.NewEntity().Get<Components.GameConfComponent>();
             _world.SendMessage(new ChangeBotComponent() { Target = Bot.Easy });
         }
     }

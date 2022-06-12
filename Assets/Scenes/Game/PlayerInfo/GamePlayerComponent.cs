@@ -3,9 +3,9 @@
     internal struct GamePlayerComponent
     {
         public readonly int PlayerID;
-        public GamePlayerComponent(int _p)
+        public GamePlayerComponent(int _pid)
         {
-            PlayerID = _p;
+            PlayerID = _pid;
         }
     }
 }

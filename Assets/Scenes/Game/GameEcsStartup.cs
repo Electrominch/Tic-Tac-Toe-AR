@@ -2,6 +2,8 @@ using Leopotam.Ecs.Common.SceneNavigate;
 using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Game.Systems;
 using Leopotam.Ecs.Game.UI;
+using Leopotam.Ecs.Game.UI.Systems;
+using System.Collections.Generic;
 using UnityEngine;
 using Voody.UniLeo;
 
@@ -19,8 +21,8 @@ namespace Leopotam.Ecs.Game
             _world = new EcsWorld ();
             _systems = new EcsSystems (_world);
 #if UNITY_EDITOR
-            Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
-            Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
+            UnityIntegration.EcsWorldObserver.Create (_world);
+            UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
             WorldHandler.Init (_world);
             _systems
@@ -29,16 +31,22 @@ namespace Leopotam.Ecs.Game
                 .Add(new GameUIInitSystem())
                 .Add(new SceneNavigateSystem())
 
-                .Add(new CellSetupSystem())
+                .Add(new ImageObjectSetupSystem())
                 .Add(new UserGameMoveSystem())
                 .Add(new BotGameMoveSystem())
                 .Add(new StartGameCycleSystem())
                 .Add(new GameCycleSystem())
+                .Add(new EndGameCycleSystem())
+
+                //обновление UI
+                .Add(new UpdateAllUISystem())
                 .Add(new UpdateCellsContentSystem())
-                .Add(new UpdateCellsColorSystem())
+                .Add(new SetRandomBackColorSystem())
+                .Add(new UpdatePlayerViewsSystem())
 
                 .OneFrame<UpdateCellsContentComponent>()
-                .OneFrame<UpdateCellsColorComponent>()
+                .OneFrame<SetRandomBackColorComponent>()
+                .OneFrame<GameEndedComponent>()
                 .Inject(_ui)
                 .Inject(_cellPrefab)
                 .Init ();

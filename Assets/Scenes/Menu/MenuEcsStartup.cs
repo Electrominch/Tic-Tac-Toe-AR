@@ -13,7 +13,7 @@ namespace Leopotam.Ecs.Menu
         [SerializeField] private MainSceneUIView _uiView;
 
         void Start () {
-            Application.targetFrameRate = 60;
+            //Application.targetFrameRate = 60;
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             // void can be switched to IEnumerator for support coroutines.
 
@@ -23,20 +23,9 @@ namespace Leopotam.Ecs.Menu
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
-            _systems.ConvertScene();
+            WorldHandler.Init(_world);
             _systems
-                // register your systems here, for example:
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
-
-                // register one-frame components (order is important), for example:
-                // .OneFrame<TestComponent1> ()
-                // .OneFrame<TestComponent2> ()
-
-                // inject service instances here (order doesn't important), for example:
-                // .Inject (new CameraService ())
-                // .Inject (new NavMeshSupport ())
-                
+                .ConvertScene()
                 .Add(new MenuUIInitSystem())
                 .Add(new MenuInstallSystem())
                 .Add(new UpdateMarkersSystem())

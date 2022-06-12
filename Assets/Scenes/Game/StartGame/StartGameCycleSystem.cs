@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs.Game.Components;
+using Leopotam.Ecs.Game.UI.Components;
 using System;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace Leopotam.Ecs.Game.Systems
         EcsFilter<StartGameCycleComponent> _start = null;
         EcsFilter<GamePlayerComponent> _players = null;
         EcsFilter<FieldComponent> _field = null;
-        EcsFilter<GameInfoComponent> _gi = null;
+        EcsFilter<GameConfComponent> _gi = null;
 
         public void Run()
         {
@@ -21,8 +22,8 @@ namespace Leopotam.Ecs.Game.Systems
             RandomFigures();
             foreach (var i in _start)
                 _start.GetEntity(i).Del<StartGameCycleComponent>();
-            _world.SendMessage(new UpdateCellsContentComponent());
-            _world.SendMessage(new UpdateCellsColorComponent());
+            _world.SendMessage(new UpdateAllUIComponent());
+            _world.SendMessage(new SetRandomBackColorComponent());
         }
 
         private void RandomFigures()//случайное распределение фигурок

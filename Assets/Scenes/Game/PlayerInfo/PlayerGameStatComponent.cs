@@ -2,8 +2,6 @@
 {
     internal struct PlayerGameStatComponent
     {
-        public int Wins;
-        public int Loses;
-        public int Draws;
+        public Stat Stat;
     }
 }

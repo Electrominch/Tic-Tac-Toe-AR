@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Leopotam.Ecs.Game.Systems
 {
-    internal class UpdateCellsColorSystem : IEcsRunSystem
+    internal class SetRandomBackColorSystem : IEcsRunSystem
     {
-        EcsFilter<UpdateCellsColorComponent> _updateEvents = null;
+        EcsFilter<SetRandomBackColorComponent> _updateEvents = null;
         EcsFilter<ImageObjectComponent> _imageObjects = null;
 
 

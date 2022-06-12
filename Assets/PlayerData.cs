@@ -132,6 +132,11 @@ public struct Stat
     public int Wins;
     public int Loses;
     public int Draws;
+
+    public static Stat operator+(Stat l, Stat r)
+    {
+        return new Stat() { Wins = l.Wins + r.Wins, Draws = l.Draws + r.Draws, Loses = l.Loses+r.Loses };
+    }
 }
 
 public struct Settings

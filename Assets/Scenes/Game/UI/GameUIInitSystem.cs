@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs.Common.SceneNavigate;
 
-namespace Leopotam.Ecs.Game.UI
+namespace Leopotam.Ecs.Game.UI.Systems
 {
     internal class GameUIInitSystem : IEcsInitSystem
     {
