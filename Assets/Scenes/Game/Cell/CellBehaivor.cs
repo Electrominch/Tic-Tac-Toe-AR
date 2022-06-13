@@ -22,6 +22,13 @@ namespace Leopotam.Ecs.Game.UI
 
         }
 
+        public void SetContentAlpha(float a)
+        {
+            var c = _contentImage.color;
+            c.a = a;
+            _contentImage.color = c;
+        }
+
         public void SetContent(int contentIndex)
         {
             if (_curCoutent == contentIndex)

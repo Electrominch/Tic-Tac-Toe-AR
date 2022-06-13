@@ -2,6 +2,7 @@ using Leopotam.Ecs.Common.SceneNavigate;
 using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Game.Systems;
 using Leopotam.Ecs.Game.UI;
+using Leopotam.Ecs.Game.UI.Components;
 using Leopotam.Ecs.Game.UI.Systems;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,8 +45,11 @@ namespace Leopotam.Ecs.Game
                 .Add(new SetRandomBackColorSystem())
                 .Add(new UpdatePlayerViewsSystem())
 
+                .Add(new SetCellsEffectSystem())
+
                 .OneFrame<UpdateCellsContentComponent>()
                 .OneFrame<SetRandomBackColorComponent>()
+                .OneFrame<SetCellsEffectComponent>()
                 .OneFrame<GameEndedComponent>()
                 .Inject(_ui)
                 .Inject(_cellPrefab)

@@ -9,5 +9,6 @@ namespace Leopotam.Ecs.Game.UI
         public GridLayoutGroup LayoutGroup;
         public GameOverlay Overlay;
         public PlayerView[] PlayerViews;
+        public LineDrawer WinLine;
     }
 }

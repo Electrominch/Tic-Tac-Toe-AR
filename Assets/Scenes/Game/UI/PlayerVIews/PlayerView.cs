@@ -13,7 +13,6 @@ public class PlayerView : MonoBehaviour
 
     public void SetBotDif(Bot b)
     {
-        Debug.Log("Where");
         _user.gameObject.SetActive(false);
         _bot.SetBotDif(b);
         _bot.gameObject.SetActive(true);

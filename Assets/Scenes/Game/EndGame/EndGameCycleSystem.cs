@@ -1,5 +1,7 @@
 ﻿using Leopotam.Ecs.Game.Components;
+using Leopotam.Ecs.Game.UI.Components;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Leopotam.Ecs.Game.Systems
@@ -26,6 +28,13 @@ namespace Leopotam.Ecs.Game.Systems
                 return;
             }
             UpdateOverlay(res, conf);
+            Alpha(res);
+        }
+
+        private void Alpha(GameEndedComponent res)
+        {
+            if (res.WinnerFigure != PlayerFigure.None)
+                _world.SendMessage(new SetCellsEffectComponent() { a = 0.3f, WinCells = res.WinCells, DrawWinLine = true });
         }
 
         private void UpdateStats(GameEndedComponent res, GameConfComponent conf)

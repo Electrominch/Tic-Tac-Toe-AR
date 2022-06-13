@@ -13,7 +13,7 @@ namespace Leopotam.Ecs.Menu
         [SerializeField] private MainSceneUIView _uiView;
 
         void Start () {
-            //Application.targetFrameRate = 60;
+            Application.targetFrameRate = 60;
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             // void can be switched to IEnumerator for support coroutines.
 

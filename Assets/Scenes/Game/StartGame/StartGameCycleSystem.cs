@@ -24,6 +24,7 @@ namespace Leopotam.Ecs.Game.Systems
                 _start.GetEntity(i).Del<StartGameCycleComponent>();
             _world.SendMessage(new UpdateAllUIComponent());
             _world.SendMessage(new SetRandomBackColorComponent());
+            _world.SendMessage(new SetCellsEffectComponent() { a = 1f, WinCells = new CellXY[0], DrawWinLine = false });
         }
 
         private void RandomFigures()//случайное распределение фигурок

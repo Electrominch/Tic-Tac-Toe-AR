@@ -1,6 +1,7 @@
 ﻿using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Game.UI.Components;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -29,14 +30,14 @@ namespace Leopotam.Ecs.Game.Systems
                 field[move.Y][move.X] = curPlayer.Get<FigureComponent>().Figure;
                 _moves.GetEntity(i).Del<GameMoveComponent>();
             }
-            if (CheckEndOfGame(field, 3, out var res))
-                _world.SendMessage(new GameEndedComponent(curPlayer.Get<GamePlayerComponent>().PlayerID, res));
+            if (CheckEndOfGame(field, 3, out var res, out CellXY[] winCells))
+                _world.SendMessage(new GameEndedComponent(curPlayer.Get<GamePlayerComponent>().PlayerID, res, winCells));
             else
                 NextPlayerTurn();
             _world.SendMessage(new UpdateAllUIComponent());
         }
 
-        private bool CheckEndOfGame(PlayerFigure[][] field, int lineForWin, out PlayerFigure winner)
+        private bool CheckEndOfGame(PlayerFigure[][] field, int lineForWin, out PlayerFigure winFigure, out CellXY[] winCells)
         {
             CellStat[][] checkTable = new CellStat[field.Length][];
             CellStat idle = new CellStat(1,1,1,1);
@@ -72,13 +73,14 @@ namespace Leopotam.Ecs.Game.Systems
                             checkTable[y][x].EqualsTopRight = checkTable[uy][rx].EqualsTopRight + 1;
                     }
 
-                    if (checkTable[y][x].Win(lineForWin))
+                    if (checkTable[y][x].Win(lineForWin, new CellXY(x,y), out winCells))
                     {
-                        winner = field[y][x];
+                        winFigure = field[y][x];
                         return true;
                     }
                 }
-            winner = PlayerFigure.None;
+            winFigure = PlayerFigure.None;
+            winCells = new CellXY[0];
             return fullField;
         }
 
@@ -111,9 +113,57 @@ namespace Leopotam.Ecs.Game.Systems
                 EqualsTopRight = tr;
             }
 
-            public bool Win(int length)
+            public bool Win(int length, CellXY curCell, out CellXY[] winCells)
             {
-                return EqualsLeft >= length || EqualsTopLeft >= length || EqualsTop >= length || EqualsTopRight >= length;
+                List<CellXY> cells = new List<CellXY>();
+                bool win = false;
+                if (EqualsLeft >= length)
+                {
+                    while(length-- > 0)
+                    {
+                        cells.Add(curCell);
+                        curCell.X--;
+                    }
+                    win = true;
+                }
+                else if(EqualsTopLeft >= length)
+                {
+                    while (length-- > 0)
+                    {
+                        cells.Add(curCell);
+                        curCell.X--;
+                        curCell.Y--;
+                    }
+                    win = true;
+                }
+                else if(EqualsTop >= length)
+                {
+                    while (length-- > 0)
+                    {
+                        cells.Add(curCell);
+                        curCell.Y--;
+                    }
+                    win = true;
+                }
+                else if(EqualsTopRight >= length)
+                {
+                    while (length-- > 0)
+                    {
+                        cells.Add(curCell);
+                        curCell.X++;
+                        curCell.Y--;
+                    }
+                    win = true;
+                }
+
+                if(win)
+                {
+                    winCells = cells.ToArray();
+                    return true;
+                }
+
+                winCells = new CellXY[0];
+                return false;
             }
 
             public override string ToString()
