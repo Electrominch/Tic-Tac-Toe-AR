@@ -1,4 +1,5 @@
 using Leopotam.Ecs.Game.Components;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +11,22 @@ public class GameOverlay : MonoBehaviour
     [SerializeField] private TextWithBack _p1;
     [SerializeField] private TextWithBack _p2;
     [SerializeField] private GameObject _rayCastPanel;
+    public bool LastDraw = false;
+    private Action _callback;
 
     public void Clicked()
     {
         _rayCastPanel.SetActive(false);
-        WorldHandler.GetWorld().SendMessage(new StartGameCycleComponent());
+        _callback?.Invoke();
         _mid.Hide();
         _p1.Hide();
         _p2.Hide();
     }
 
-    public void SetRayCastBlock()
+    public void SetRayCastBlock(Action callback)
     {
         _rayCastPanel.SetActive(true);
+        _callback = callback;
     }
     
     public void SetPlayer1(string s, Color c) => _p1.Show(s, c);

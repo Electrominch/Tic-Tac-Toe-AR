@@ -9,15 +9,28 @@ public class BotView : MonoBehaviour
     [SerializeField] private Image _avatar;
     [SerializeField] private TextMeshProUGUI _difficulty;
 
-    public void SetBotDif(Bot bot)
+    public void SetBotText(string text)
     {
-        _difficulty.text = bot.ToString();
+        _difficulty.text = text;
+    }
+
+    private int lastIndex = -1;
+    public void RandomAvatar()
+    {
+        int rndIndex = -1;
+        do
+        {
+            rndIndex = Random.Range(0, _avatars.Length);
+        }
+        while (rndIndex == lastIndex);
+        _avatar.sprite = _avatars[rndIndex];
+        lastIndex = rndIndex;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _avatar.sprite = _avatars[Random.Range(0, _avatars.Length)];
+        RandomAvatar();
     }
 
     // Update is called once per frame

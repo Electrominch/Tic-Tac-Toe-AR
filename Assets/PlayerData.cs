@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public static class PlayerData
 {
@@ -38,11 +41,13 @@ public static class PlayerData
             Save();
         }
     }
-    
+    public static List<TournamentRes> TournamentRes => _tours.ToList();
+
     private static Settings _settings;
     private static Stat _easyBot;
     private static Stat _normBot;
     private static Stat _hardBot;
+    private static List<TournamentRes> _tours;
 
     static PlayerData()
     {
@@ -55,6 +60,7 @@ public static class PlayerData
         PlayerPrefs.SetString("normalStat", _normBot.XmlSerializeToString());
         PlayerPrefs.SetString("hardStat", _hardBot.XmlSerializeToString());
         PlayerPrefs.SetString("settings", Settings.XmlSerializeToString());
+        PlayerPrefs.SetString("tours", _tours.XmlSerializeToString());
         PlayerPrefs.Save();
     }
 
@@ -73,6 +79,11 @@ public static class PlayerData
 
             string sets = PlayerPrefs.GetString("settings");
             _settings = sets.XmlDeserializeFromString<Settings>();
+            
+            string tours = PlayerPrefs.GetString("tours");
+            _tours = tours.XmlDeserializeFromString<List<TournamentRes>>();
+            if (_tours.Count != 5)
+                throw new Exception();
         }
         catch
         {
@@ -115,6 +126,19 @@ public static class PlayerData
         Save();
     }
 
+    public static void TryAddResult(TournamentRes res)
+    {
+        for(int i = 0; i < _tours.Count; i++)
+        {
+            if (_tours[i].Wins < res.Wins)
+            {
+                _tours[i] = res;
+                Save();
+                break;
+            }
+        }
+    }
+
     private static void SetDefaults()
     {
         _easyBot = new Stat();
@@ -124,6 +148,9 @@ public static class PlayerData
         _settings.Sound = true;
         _settings.DateFormat = "dd.MM.yyyy";
         _settings.TimeFormat = "HH:mm";
+        _tours = new List<TournamentRes>();
+        while (_tours.Count != 5)
+            _tours.Add(new TournamentRes() { DateTime = DateTime.Now.Date });
     }
 }
 
@@ -145,4 +172,16 @@ public struct Settings
     public bool Sound;
     public string DateFormat;
     public string TimeFormat;
+}
+
+public struct TournamentRes
+{
+    public int Wins;
+    public DateTime DateTime;
+
+    public TournamentRes(int wins, DateTime dt)
+    {
+        Wins = wins;
+        DateTime = dt;
+    }
 }

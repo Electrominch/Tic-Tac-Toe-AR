@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs.Game.Components;
+﻿using Leopotam.Ecs.Common.SceneNavigate;
+using Leopotam.Ecs.Game.Components;
 using Leopotam.Ecs.Game.UI.Components;
 using System;
 using System.Linq;
@@ -20,8 +21,10 @@ namespace Leopotam.Ecs.Game.Systems
             if (_endEvent.GetEntitiesCount() == 0)
                 return;
             GameEndedComponent res = _endEvent.Get1(0);
-            GameConfComponent conf = _conf.Get1(0);
+            ref GameConfComponent conf = ref _conf.Get1(0);
+            conf.LastDraw = res.WinnerFigure == PlayerFigure.None;
             UpdateStats(res, conf);
+            _world.SendMessage(new UpdatePlayerViewsComponent());
             if (_users.GetEntitiesCount() == 0)//если играют не только боты
             {
                 _world.SendMessage(new StartGameCycleComponent());
@@ -80,17 +83,26 @@ namespace Leopotam.Ecs.Game.Systems
             foreach (var imgIndex in _imageObjects)
             {
                 ref var imageObject = ref _imageObjects.Get1(imgIndex);
-                var overlay = imageObject.View.Overlay;
-                overlay.SetRayCastBlock();
+                GameOverlay overlay = imageObject.View.Overlay;
+                Action callback = ()=>_world.SendMessage(new StartGameCycleComponent());
                 if (conf.TacMode == TicTacMode.Bot)
                 {
                     var userId = _users.Get1(0).PlayerID;
+                    bool tournament = Bridge.BotDifficulty == Bot.Tournament;
                     if (res.WinnerFigure == PlayerFigure.None)
                         overlay.SetMid("Draw", new Color(142 / 255f, 142 / 255f, 142 / 255f, 120 / 255f));
                     else if (res.WinnerID == userId)
                         overlay.SetMid("Win", new Color(142 / 255f, 200 / 255f, 142 / 255f, 120 / 255f));
                     else
-                        overlay.SetMid("Lose", new Color(200 / 255f, 142 / 255f, 142 / 255f, 120 / 255f));
+                    {
+                        overlay.SetMid(tournament ? "Game Over" : "Lose", new Color(200 / 255f, 142 / 255f, 142 / 255f, 120 / 255f));
+                        if (tournament)
+                            callback = () =>
+                            {
+                                PlayerData.TryAddResult(new TournamentRes(_users.Get3(0).Stat.Wins, DateTime.Now));
+                                _world.SendMessage(new NavigateToSceneComponent("Menu"));
+                            };
+                    }
                 }
                 else
                 {
@@ -110,6 +122,7 @@ namespace Leopotam.Ecs.Game.Systems
                         overlay.SetPlayer2("Win", new Color(142 / 255f, 200 / 255f, 142 / 255f, 120 / 255f));
                     }
                 }
+                overlay.SetRayCastBlock(callback);
             }
         }
     }

@@ -22,7 +22,8 @@ namespace Leopotam.Ecs.Game.Systems
             RandomFigures();
             foreach (var i in _start)
                 _start.GetEntity(i).Del<StartGameCycleComponent>();
-            _world.SendMessage(new UpdateAllUIComponent());
+            _world.SendMessage(new UpdateCellsContentComponent());
+            _world.SendMessage(new UpdatePlayerViewsComponent() { UpdateBots = !_gi.Get1(0).LastDraw });
             _world.SendMessage(new SetRandomBackColorComponent());
             _world.SendMessage(new SetCellsEffectComponent() { a = 1f, WinCells = new CellXY[0], DrawWinLine = false });
         }

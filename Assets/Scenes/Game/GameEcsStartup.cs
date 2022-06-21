@@ -40,7 +40,6 @@ namespace Leopotam.Ecs.Game
                 .Add(new EndGameCycleSystem())
 
                 //обновление UI
-                .Add(new UpdateAllUISystem())
                 .Add(new UpdateCellsContentSystem())
                 .Add(new SetRandomBackColorSystem())
                 .Add(new UpdatePlayerViewsSystem())
@@ -48,6 +47,7 @@ namespace Leopotam.Ecs.Game
                 .Add(new SetCellsEffectSystem())
 
                 .OneFrame<UpdateCellsContentComponent>()
+                .OneFrame<UpdatePlayerViewsComponent>()
                 .OneFrame<SetRandomBackColorComponent>()
                 .OneFrame<SetCellsEffectComponent>()
                 .OneFrame<GameEndedComponent>()

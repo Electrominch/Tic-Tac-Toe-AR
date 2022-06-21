@@ -8,5 +8,6 @@ namespace Leopotam.Ecs.Game.UI.Components
 {
     internal struct UpdatePlayerViewsComponent
     {
+        public bool UpdateBots;
     }
 }

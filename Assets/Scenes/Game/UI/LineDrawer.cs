@@ -10,7 +10,6 @@ public class LineDrawer : MonoBehaviour
 
     public void Draw(Vector2[] dots, float cellSide)
     {
-        Debug.Log($"{dots[0]} {dots.Last()} {Vector2.Distance(dots[0], dots.Last())}");
         var scale = _line.localScale;
         scale.y = (Vector2.Distance(dots[0], dots.Last()) + cellSide*0.5f) / 100f;
         scale.x = cellSide / 100f*0.2f;

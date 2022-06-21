@@ -14,6 +14,9 @@ namespace Leopotam.Ecs.Menu.UI
         public Button Reset;
         public Button DateFormat;
         public Button TimeFormat;
+        public GameObject _crossForMusic;
+        public GameObject _crossForSound;
+        [SerializeField] private BackMusic _back;
 
         private void Start()
         {
@@ -23,6 +26,10 @@ namespace Leopotam.Ecs.Menu.UI
                 var sets = PlayerData.Settings;
                 sets.Music = !sets.Music;
                 PlayerData.Settings = sets;
+                if (sets.Music)
+                    _back.StartMusic();
+                else
+                    _back.StopMusic();
                 UpdateUI();
             });
             Sound.onClick.AddListener(() =>
@@ -52,8 +59,8 @@ namespace Leopotam.Ecs.Menu.UI
         private void UpdateUI()
         {
             var sets = PlayerData.Settings;
-            Music.image.color = sets.Music ? Color.green : Color.red;
-            Sound.image.color = sets.Sound ? Color.green : Color.red;
+            _crossForMusic.SetActive(!sets.Music);
+            _crossForSound.SetActive(!sets.Sound);
             DateTime dt = new DateTime(2022, 12, 31, 23, 59, 0);
             DateFormat.GetComponentInChildren<TextMeshProUGUI>().text = dt.ToString(sets.DateFormat, CultureInfo.InvariantCulture);
             TimeFormat.GetComponentInChildren<TextMeshProUGUI>().text = dt.ToString(sets.TimeFormat, CultureInfo.InvariantCulture);

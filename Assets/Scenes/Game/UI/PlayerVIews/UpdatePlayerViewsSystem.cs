@@ -15,7 +15,7 @@ namespace Leopotam.Ecs.Game.UI.Systems
         {
             if (_event.GetEntitiesCount() == 0)
                 return;
-
+            var updateBots = _event.Get1(0).UpdateBots;
             Dictionary<int, PlayerView> id_views = new Dictionary<int, PlayerView>();
             foreach (var view in _playerViews)
             {
@@ -31,10 +31,18 @@ namespace Leopotam.Ecs.Game.UI.Systems
                     continue;
                 if (id_views[pid].IsUserView)
                     id_views[pid].UpdateUserStats(_allUsers.Get3(i).Stat);
+                else if(updateBots)
+                {
+                    string text = "";
+                    var botEnt = _allUsers.GetEntity(i);
+                    if (botEnt.Get<BotComponent>().BotDif == Bot.Tournament)
+                        text = $"Tournament\nPlayer No.{botEnt.Get<PlayerGameStatComponent>().Stat.Loses + 1}";
+                    else
+                        text = botEnt.Get<BotComponent>().BotDif.ToString();
+                    id_views[pid].UpdateBot(text);
+                }
                 id_views[pid].SetFigure((int)_allUsers.Get2(i).Figure-1);
             }
-            foreach (var i in _event)
-                _event.GetEntity(i).Del<UpdatePlayerViewsComponent>();
         }
     }
 }

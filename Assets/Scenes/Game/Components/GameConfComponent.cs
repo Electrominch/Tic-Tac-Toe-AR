@@ -4,5 +4,6 @@
     {
         public int CellCount;
         public TicTacMode TacMode;
+        public bool LastDraw;
     }
 }

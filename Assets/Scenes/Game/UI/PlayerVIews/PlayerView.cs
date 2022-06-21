@@ -14,7 +14,7 @@ public class PlayerView : MonoBehaviour
     public void SetBotDif(Bot b)
     {
         _user.gameObject.SetActive(false);
-        _bot.SetBotDif(b);
+        _bot.SetBotText(b.ToString());
         _bot.gameObject.SetActive(true);
     }
 
@@ -23,6 +23,13 @@ public class PlayerView : MonoBehaviour
         _bot.gameObject.SetActive(false);
         _user.UpdateStats(s);
         _user.gameObject.SetActive(true);
+    }
+
+    public void UpdateBot(string text = "")
+    {
+        if (!string.IsNullOrEmpty(text))
+            _bot.SetBotText(text);
+        _bot.RandomAvatar();
     }
 
     public void SetFigure(int contentIndex)

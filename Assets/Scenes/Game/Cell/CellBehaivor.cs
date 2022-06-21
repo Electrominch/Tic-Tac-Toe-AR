@@ -58,6 +58,13 @@ namespace Leopotam.Ecs.Game.UI
         {
             WorldHandler.GetWorld().SendMessage(new UserGameMoveComponent(X, Y));
         }
+
+        public void SetInteractable(bool b)
+        {
+            if (_curCoutent >= 0)
+                return;
+            _button.enabled = b;
+        }
     }
 
 }

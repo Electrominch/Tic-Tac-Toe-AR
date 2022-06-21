@@ -4,6 +4,6 @@ namespace Bots
 {
     internal interface IBot
     {
-        public (int, int) Move(PlayerFigure[][] field, PlayerFigure me);
+        public CellXY Move(PlayerFigure[][] field, PlayerFigure me);
     }
 }

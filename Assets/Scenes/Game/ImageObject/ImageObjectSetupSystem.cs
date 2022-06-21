@@ -24,8 +24,9 @@ namespace Leopotam.Ecs.Game.UI.Systems
                 ref var imageObjectComponent = ref foundedEntity.Get<ImageObjectComponent>();//компонент трекинг-объекта
                 SetupCells(ref imageObjectComponent);
                 SetupPlayerViews(imageObjectComponent.View);
-                _world.SendMessage(new UpdateAllUIComponent());//обновляем новые клеточки
+                _world.SendMessage(new UpdateCellsContentComponent());//обновляем новые клеточки
                 _world.SendMessage(new SetRandomBackColorComponent());//случайные цвета для клеточек
+                _world.SendMessage(new UpdatePlayerViewsComponent());//Обновление вьюшек игроков
                 foundedEntity.Del<ImageObjectFoundedComponent>();//снимаем с неё пометку нового объекта
             }
         }
@@ -68,7 +69,7 @@ namespace Leopotam.Ecs.Game.UI.Systems
             foreach (var i in _bots)
             {
                 var curPlayerView = view.PlayerViews[playerViewIndex++];
-                curPlayerView.IsUserView = false;
+                curPlayerView.IsUserView = _bots.GetEntitiesCount()==2;
                 curPlayerView.PlayerID = _bots.Get1(i).PlayerID;
 
                 ref var newPlayerViewComponent = ref _world.NewEntity().Get<PlayerViewComponent>();
